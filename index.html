@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Soil Moisture Data</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .moisture-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .moisture-level {
+      font-size: 48px;
+      color: #333333;
+    }
+
+    .moisture-image {
+      width: 400px;
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <script>
+    function fetchData() {
+      fetch('/data')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('moisture-level').innerText = data.moisture;
+        })
+        .catch(error => {
+          console.log('Error:', error);
+        });
+    }
+
+    setInterval(fetchData, 100); // Fetch data every 0.1 seconds
+  </script>
+</head>
+<body>
+  <h1>Soil Moisture Data</h1>
+  <div class="moisture-container">
+    <p>Moisture Level:</p>
+    <span id="moisture-level" class="moisture-level"></span>
+  </div>
+  <img class="moisture-image" src="https://cdn.shopify.com/s/files/1/2561/3316/articles/checking-soil-moisture_05ac6872-b096-4f76-85cf-e8c78fa35949.jpg?v=1599647858" alt="Moisture Image">
+</body>
+</html>
