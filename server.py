@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import os
 
 moisture_data = {"moisture": 0}  # Placeholder for moisture data
 
@@ -9,7 +10,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
-            with open('index.html', 'rb') as file:
+            current_path = os.path.dirname(os.path.realpath(__file__))
+            with open(os.path.join(current_path, 'index.html'), 'rb') as file:
                 self.wfile.write(file.read())
         elif self.path == '/data':
             self.send_response(200)

@@ -3,7 +3,7 @@
 
 const char* ssid = "Jio_home_2.4G";
 const char* password = "laran@123";
-const char* serverAddress = "192.168.29.126"; // Replace with your server address
+const char* serverAddress = "192.168.43.126"; // Replace with your server address
 const int serverPort = 8000;  // Replace with your server port if necessary
 
 void setup() {
